@@ -1,0 +1,9 @@
+<button *ngIf="!cell.clicked && gameService.gamestate == 'run'" (click)="onClick()" (contextmenu)="onRightClick()" class="w-full h-full text-black font-bold bg-blue-500 hover:bg-blue-400 active:bg-blue-600 border border-t-blue-200 border-l-blue-200 border-b-blue-950 border-r-blue-950 active:border-t-blue-950 active:border-l-blue-950 active:border-b-blue-200 active:border-r-blue-200">
+    {{flagSymbol}}
+</button>
+<button *ngIf="!cell.clicked && gameService.gamestate != 'run'" disabled class="w-full h-full text-black font-bold bg-blue-500 border border-t-blue-200 border-l-blue-200 border-b-blue-950 border-r-blue-950">
+    {{flagSymbol}}
+</button>
+<button *ngIf="cell.clicked" [ngStyle]="{color:symbolColor}" disabled class="w-full h-full font-bold bg-blue-700 border border-blue-800">
+    {{symbol}}
+</button>
