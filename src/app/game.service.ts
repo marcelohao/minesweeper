@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, isDevMode } from '@angular/core';
 import { Cell } from './cell.model';
 
 @Injectable({
@@ -18,7 +18,20 @@ export class GameService {
   timeInterval: any;
   settingsVisible = false;
 
-  constructor() { }
+  // edit constructor to expose GameService class of 'window' JavaScript object
+  constructor() {
+    // remember to import isDevMode
+    // note from API documentation: Returns whether Angular is in development mode. After called once, 
+    // the value is locked and won't change any more.
+    // By default, this is true, unless a user calls enableProdMode before calling this.
+    if (isDevMode()){
+      // expose GameService class from Window
+      window.GameService = this
+      // note: needs another file with an interface in it. index.d.ts
+    }
+
+
+   }
 
   newGame() {
     this.gamestate = 'run';
